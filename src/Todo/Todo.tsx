@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout } from 'antd';
-import { Mutation } from 'react-apollo';
+import { MutationFn } from 'react-apollo';
 import uuid from 'uuid/v4';
 import { FormComponentProps } from 'antd/lib/form';
 import { GET_TODOS, CREATE_TODO } from '../graphql';
@@ -18,7 +18,29 @@ export const Todo = () => (
       }}
     >
       <Layout style={{ flexDirection: 'row', marginBottom: '1rem' }}>
-        <Mutation<CreateTodo, CreateTodoVariables>
+        <TodoForm
+          // tslint:disable-next-line jsx-no-lambda
+          onSubmit={(
+            { getFieldValue, resetFields }: FormComponentProps['form'],
+            mutate: MutationFn,
+          ) => (e: React.FormEvent) => {
+            e.preventDefault();
+            mutate({
+              variables: {
+                createTodoInput: {
+                  id: uuid(),
+                  title: getFieldValue('title').trim(),
+                  completed: false,
+                  createdAt: `${Date.now()}`,
+                },
+              },
+            }).catch(err => {
+              console.log(err);
+            });
+            resetFields(['title']);
+          }}
+        />
+        {/* <Mutation<CreateTodo, CreateTodoVariables>
           mutation={CREATE_TODO}
           refetchQueries={[{ query: GET_TODOS }]}
         >
@@ -45,7 +67,7 @@ export const Todo = () => (
             };
             return <TodoForm onSubmit={onSubmit} />;
           }}
-        </Mutation>
+        </Mutation> */}
       </Layout>
       <Layout>
         <TodoContent />
