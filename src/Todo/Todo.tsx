@@ -3,8 +3,6 @@ import { Layout } from 'antd';
 import { MutationFn } from 'react-apollo';
 import uuid from 'uuid/v4';
 import { FormComponentProps } from 'antd/lib/form';
-import { GET_TODOS, CREATE_TODO } from '../graphql';
-import { CreateTodo, CreateTodoVariables } from '../types/CreateTodo';
 import { TodoForm, TodoContent } from '.';
 
 export const Todo = () => (
@@ -40,34 +38,6 @@ export const Todo = () => (
             resetFields(['title']);
           }}
         />
-        {/* <Mutation<CreateTodo, CreateTodoVariables>
-          mutation={CREATE_TODO}
-          refetchQueries={[{ query: GET_TODOS }]}
-        >
-          {(createTodo, { data }) => {
-            // console.log(data);
-            const onSubmit = ({
-              getFieldValue,
-              resetFields,
-            }: FormComponentProps['form']) => (e: React.FormEvent) => {
-              e.preventDefault();
-              createTodo({
-                variables: {
-                  createTodoInput: {
-                    id: uuid(),
-                    title: getFieldValue('title').trim(),
-                    completed: false,
-                    createdAt: `${Date.now()}`,
-                  },
-                },
-              }).catch(err => {
-                console.log(err);
-              });
-              resetFields(['title']);
-            };
-            return <TodoForm onSubmit={onSubmit} />;
-          }}
-        </Mutation> */}
       </Layout>
       <Layout>
         <TodoContent />
