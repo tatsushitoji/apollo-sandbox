@@ -1,0 +1,59 @@
+{
+  "name": "apollo-sandobx",
+  "dependencies": {
+    "@types/jest": "23.3.10",
+    "@types/node": "10.12.12",
+    "@types/react": "16.7.13",
+    "@types/react-dom": "16.0.11",
+    "@types/uuid": "^3.4.4",
+    "antd": "^3.11.0",
+    "apollo-boost": "^0.1.22",
+    "apollo-server": "^2.3.1",
+    "apollo-server-express": "^2.3.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
+    "react": "^16.6.3",
+    "react-apollo": "^2.3.2",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1",
+    "typescript": "3.2.1",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start:front": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom --verbose=false",
+    "eject": "react-scripts eject",
+    "lint": "tslint 'src/**/*.ts{,x}' -p tsconfig.json",
+    "start:graphql": "node graphql-server/index.js",
+    "start": "run-p start:*",
+    "gen:schema": "apollo schema:download -c=apollo.config.js schema.json",
+    "gen:types": "apollo client:codegen src/types -c=apollo.config.js --target=typescript --outputFlat --no-addTypename --tagName=gql"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "apollo": "^2.1.8",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.15.3",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^3.6.0"
+  },
+  "license": "MIT"
+}
