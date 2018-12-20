@@ -26,7 +26,7 @@ const withCreateTodoMutation = graphql<
   ChildProps
 >(CREATE_TODO);
 
-const TodoFormComponent: React.SFC<ChildProps> = ({
+export const TodoFormComponent: React.SFC<ChildProps> = ({
   form,
   mutate,
   onSubmit,
@@ -39,7 +39,7 @@ const TodoFormComponent: React.SFC<ChildProps> = ({
     >
       <Layout style={{ flexDirection: 'row' }}>
         {form.getFieldDecorator('title', {
-          rules: [{ required: true, message: 'Please input your username!' }],
+          rules: [{ required: true, message: 'Please input Todo!' }],
         })(<Input placeholder="Input ToDo" name="title" />)}
         <Button
           type="primary"
